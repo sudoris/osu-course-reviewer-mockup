@@ -16,7 +16,14 @@
               @filter="filterFn"              
               @input-value="setModel"
               :hint="hint"                                
-            >              
+            >
+              <template v-slot:no-option>
+                <q-item>
+                  <q-item-section class="text-grey">
+                    No matching courses found
+                  </q-item-section>
+                </q-item>
+              </template>       
             </q-select>                               
           </q-card-section>
           <q-card-section class="bg-red-1">            
@@ -38,7 +45,7 @@
                 Group Work: N/A
               </div>   
               <div class="q-pt-sm text-bold">
-                Terms Available: Spring, Fall
+                Available Terms: Spring, Fall
               </div>                     
             </div>
             <div v-else>No course selected</div> 
@@ -114,6 +121,18 @@
 
 <script>
 const courses = ['CS 161 - Intro to Computer Science I', 'CS 225 - Data Structures', 'CS 325 - Analysis of Algorithms', 'CS 361 - Software Engineering I']
+const catalog = [
+  {
+    id: 1,
+    name: 'CS 161',
+    title: 'Intro to Computer Science I',
+    prequisites: ['MTH 112'],
+    proctored: true,
+    group: false,
+    terms: ['Spring', 'Summer', 'Fall', 'Winter']
+  }
+]
+
 
 export default {
   name: 'MainLayout',
